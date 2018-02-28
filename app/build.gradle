@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+//打包时间
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.alizhezi.mulitchannel"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
+    }
+
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+// 批量打包
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        //输出apk名称为：渠道名_版本名_时间.apk
+                        def fileName = "${variant.productFlavors[0].name}_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                        // output.outputFile = new File(outputFile.parent, fileName)
+                        outputFileName = fileName
+                    }
+                }
+            }
+
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
+        }
+    }
+
+    // 多渠道 的不同配置
+    productFlavors {
+        baidu {
+            // 每个环境包名不同
+            applicationId "com.alizhezi.mulitchannel.baidu"
+            // 动态添加 string.xml 字段；
+            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
+            resValue "string", "app_name", "百度"
+            resValue "bool", "auto_updates", 'false'
+            // 动态修改 常量 字段
+            buildConfigField "String", "ENVIRONMENT", '"我是百度首页"'
+            // 修改 AndroidManifest.xml 里渠道变量
+            manifestPlaceholders = [CHANNEL_VALUE: "baidu"
+                                    , app_icon   : "@mipmap/logo_baidu"]
+        }
+        qq {
+            applicationId "com.alizhezi.mulitchannel.qq"
+
+            resValue "string", "app_name", "腾讯"
+            resValue "bool", "auto_updates", 'true'
+
+            buildConfigField "String", "ENVIRONMENT", '"我是腾讯首页"'
+
+            manifestPlaceholders = [CHANNEL_VALUE: "qq"
+                                    , app_icon   : "@mipmap/logo_qq"]
+        }
+        xiaomi {
+            applicationId "com.alizhezi.mulitchannel.xiaomi"
+
+            resValue "string", "app_name", "小米"
+            resValue "bool", "auto_updates", 'true'
+            resValue "drawable", "isrRank", 'true'
+
+            buildConfigField "String", "ENVIRONMENT", '"我是小米首页"'
+
+            manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"
+                                    , app_icon   : "@mipmap/logo_xiaomi"]
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}
