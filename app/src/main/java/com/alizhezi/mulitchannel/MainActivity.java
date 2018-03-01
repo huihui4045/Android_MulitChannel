@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /***
- * Dev分支
+ * 分支
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         Toast.makeText(this,getAppMetaData(this,"CHANNEL"),Toast.LENGTH_LONG).show();
+
+
+
+
+
     }
 
 
