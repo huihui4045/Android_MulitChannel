@@ -64,4 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
         return resultData;
     }
+
+
+    /****
+     * 魔术模块
+     */
+    public void moshu(){
+
+
+    }
 }
