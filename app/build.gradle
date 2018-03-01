@@ -15,6 +15,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
+
+        resValue "string", "app_name", "测试"
+
+        manifestPlaceholders=[CHANNEL_VALUE: "测试",app_icon   : "@mipmap/ic_launcher"]
+
+        buildConfigField "String", "ENVIRONMENT", '"我是测试首页"'
     }
 
 
@@ -49,6 +55,11 @@ android {
 
     // 多渠道 的不同配置
     productFlavors {
+
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [CHANNEL_VALUE: "测试"]
+        }
         baidu {
             // 每个环境包名不同
             applicationId "com.alizhezi.mulitchannel.baidu"
@@ -85,6 +96,18 @@ android {
             manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"
                                     , app_icon   : "@mipmap/logo_xiaomi"]
         }
+
+
+        ceshi{
+
+            resValue "string", "app_name", "测试1"
+
+            manifestPlaceholders=[CHANNEL_VALUE: "测试1",app_icon   : "@mipmap/ic_launcher"]
+
+            buildConfigField "String", "ENVIRONMENT", '"我是测试1首页"'
+        }
+
+
     }
 
 
