@@ -71,4 +71,13 @@ public class MainActivity extends AppCompatActivity {
     public void ceshi(){
 
     }
+
+
+    /****
+     * 魔术模块
+     */
+    public void moshu(){
+
+
+    }
 }
