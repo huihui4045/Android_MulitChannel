@@ -65,12 +65,10 @@ public class MainActivity extends AppCompatActivity {
         return resultData;
     }
 
-
-    /****
-     * 魔术模块
+    /***
+     * 测试分支
      */
-    public void moshu(){
-
+    public void ceshi(){
 
     }
 }
