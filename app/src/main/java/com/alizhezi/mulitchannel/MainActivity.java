@@ -71,4 +71,13 @@ public class MainActivity extends AppCompatActivity {
     public void ceshi(){
 
     }
+
+    /***
+     * 测试2
+     * @return
+     */
+    public String ceshi2(){
+
+        return "";
+    }
 }
