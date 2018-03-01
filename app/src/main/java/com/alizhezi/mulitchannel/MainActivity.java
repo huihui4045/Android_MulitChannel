@@ -80,4 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /***
+     * 测试2
+     * @return
+     */
+    public String ceshi2(){
+
+        return "";
+    }
 }
