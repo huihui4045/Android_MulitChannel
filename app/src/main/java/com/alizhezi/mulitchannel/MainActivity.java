@@ -64,4 +64,39 @@ public class MainActivity extends AppCompatActivity {
 
         return resultData;
     }
+
+    /***
+     * 测试分支
+     */
+    public void ceshi(){
+
+    }
+
+
+    /****
+     * 魔术模块
+     */
+    public void moshu(){
+
+
+    }
+    /****
+     * 魔术模块2
+     */
+    public void moshu2(){
+
+
+    }
+
+    /***
+     * 测试2
+     * @return
+     */
+    public String ceshi2(){
+
+        return "";
+    }
+
+
+
 }
