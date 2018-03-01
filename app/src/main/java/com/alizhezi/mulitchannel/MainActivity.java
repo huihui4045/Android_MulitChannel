@@ -73,4 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    /****
+     * 魔术模块2
+     */
+    public void moshu2(){
+
+
+    }
 }
